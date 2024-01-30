@@ -1,4 +1,4 @@
-from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 #These lines import necessary classes and modules from the Django Rest Framework's authtoken app.
@@ -6,7 +6,7 @@ from rest_framework.response import Response
 # Token is the model that represents the authentication tokens.
 # Response is a class used to create HTTP responses.
 
-class CustomAuthToken(obtain_auth_token): #This line defines a new class named CustomAuthToken that inherits from the obtain_auth_token view. This allows you to customize the behavior of the authentication token view.
+class CustomAuthToken(ObtainAuthToken): #This line defines a new class named CustomAuthToken that inherits from the obtain_auth_token view. This allows you to customize the behavior of the authentication token view.
      def post(self, request, *args, **kwargs): #jab bhi post req mara jaega to ye function hit hoga
          serializer = self.serializer_class(data=request.data,
                                             context={'request': request}) # ki hui req k sath jo body aya hai usko serializer class me pass kr do
@@ -16,5 +16,7 @@ class CustomAuthToken(obtain_auth_token): #This line defines a new class named C
          return Response({
              'token': token.key,
              'user_id': user.pk,
+             #'name' : user.username,
              'email': user.email
          })# this line returns the token, user ID, and email address in the response body.
+     

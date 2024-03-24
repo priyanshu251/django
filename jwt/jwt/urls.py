@@ -4,6 +4,8 @@ from api import views
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView,TokenVerifyView
 
+
+
 # creating router object
 router = DefaultRouter()
 
